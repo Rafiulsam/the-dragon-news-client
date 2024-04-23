@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../../src/assets/logo.png'
 import moment from 'moment';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
+
+    const { user } = useContext(AuthContext)
     return (
         <Container>
             <div className='text-center'>
@@ -22,16 +27,15 @@ const Header = () => {
                 <Container>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mx-auto">
-                            <Nav.Link href="#features">Home</Nav.Link>
-                            <Nav.Link href="#pricing">About</Nav.Link>
-                            <Nav.Link href="#pricing">Career</Nav.Link>
+                        <Nav className="mx-auto d-flex gap-4">
+                            <Link className='text-decoration-none text-secondary' to={'/category/0'}>Home</Link>
+                            <Link to={'/about'} className='text-decoration-none text-secondary'>About</Link>
+                            <Link to={'/career'} className='text-decoration-none text-secondary'>Career</Link>
                         </Nav>
-                        <Nav className='align-items-center'> 
-                            <Nav.Link href="#deets">Profile</Nav.Link>
-                            <Nav.Link eventKey={2} href="#memes">
-                                <Button variant="dark">Login</Button>
-                            </Nav.Link>
+                        <Nav className='align-items-center'>
+                            <Nav.Link ><FaUserCircle style={{ fontSize: '2rem' }} /> </Nav.Link>
+                            {user ? <Button variant="dark">Logout</Button> : <Button variant="dark"><Link className='text-decoration-none text-white' to={'/login'}>Login</Link></Button>}
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

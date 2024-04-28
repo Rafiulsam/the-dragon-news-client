@@ -8,8 +8,13 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
 
-    const { user } = useContext(AuthContext)
+    // const handleLogOut =()=>{
+    //     logOut()
+    //     .then()
+    //     .cath(error => console.log(error))
+    // }
     return (
         <Container>
             <div className='text-center'>
@@ -33,8 +38,7 @@ const Header = () => {
                             <Link to={'/career'} className='text-decoration-none text-secondary'>Career</Link>
                         </Nav>
                         <Nav className='align-items-center'>
-                            <Nav.Link ><FaUserCircle style={{ fontSize: '2rem' }} /> </Nav.Link>
-                            {user ? <Button variant="dark">Logout</Button> : <Button variant="dark"><Link className='text-decoration-none text-white' to={'/login'}>Login</Link></Button>}
+                            {user ? <><Nav.Link ><FaUserCircle style={{ fontSize: '2rem' }} /> </Nav.Link><Button variant="dark">Logout</Button></> : <Button variant="dark"><Link className='text-decoration-none text-white' to={'/login'}>Login</Link></Button>}
 
                         </Nav>
                     </Navbar.Collapse>

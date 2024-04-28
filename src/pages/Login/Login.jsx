@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext)
+    // const navigate = useNavigate()
 
     const handleLogin = event => {
         event.preventDefault()
@@ -18,6 +19,8 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 form.reset()
+                // navigate('/category/0')
+                
             })
             .catch(error => {
                 console.log(error.code);

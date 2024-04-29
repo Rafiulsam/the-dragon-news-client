@@ -6,45 +6,46 @@ import News from "../pages/News/News";
 import LoginLayout from "../layouts/LoginLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
+import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<LoginLayout/>,
-        children:[
+        path: '/',
+        element: <LoginLayout />,
+        children: [
             {
-                path:'/',
-                element:<Navigate to={'/category/0'}></Navigate>
+                path: '/',
+                element: <Navigate to={'/category/0'}></Navigate>
             },
             {
-                path:'login',
-                element:<Login/>
+                path: 'login',
+                element: <Login />
             },
             {
-                path:'register',
-                element:<Register/>
+                path: 'register',
+                element: <Register />
             }
         ]
     },
     {
-        path:'category',
-        element:<Main/>,
-        children:[
+        path: 'category',
+        element: <Main />,
+        children: [
             {
-                path:':id',
-                element:<Category/>,
-                loader: ({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+                path: ':id',
+                element: <Category />,
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             }
         ]
     },
     {
-        path:'news',
-        element:<NewsLayout/>,
-        children:[
+        path: 'news',
+        element: <NewsLayout />,
+        children: [
             {
-                path:':id',
-                element:<News/>,
-                loader:({params})=> fetch(`http://localhost:5000/news/${params.id}`)
+                path: ':id',
+                element: <PrivetRoute><News /></PrivetRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
             }
         ]
     }

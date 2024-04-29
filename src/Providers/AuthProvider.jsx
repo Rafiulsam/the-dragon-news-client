@@ -16,6 +16,10 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const logOut =()=>{
+        return signOut(auth)
+    }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             console.log('logged in user inside state observer', loggedUser);
@@ -31,6 +35,7 @@ const AuthProvider = ({ children }) => {
         user,
         createUser,
         signIn,
+        logOut
     }
     return (
         <AuthContext.Provider value={authInfo} >

@@ -10,10 +10,10 @@ import { FaUserCircle } from 'react-icons/fa';
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const handleLogOut =()=>{
+    const handleLogOut = () => {
         logOut()
-        .then()
-        .cath(error => console.log(error))
+            .then()
+            .catch(error => console.log(error))
     }
     return (
         <Container>
